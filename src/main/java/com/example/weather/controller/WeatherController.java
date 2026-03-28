@@ -1,6 +1,7 @@
 package com.example.weather.controller;
 
 import com.example.weather.dto.ForecastResponse;
+import com.example.weather.dto.RainProbabilityResponse;
 import com.example.weather.dto.WeatherResponse;
 import com.example.weather.service.WeatherService;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,12 @@ public class WeatherController {
     @GetMapping("/forecast/{city}")
     public ResponseEntity<ForecastResponse> getForecast(@PathVariable String city) {
         ForecastResponse response = weatherService.getForecast(city);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/rain-probability/{city}")
+    public ResponseEntity<RainProbabilityResponse> getRainProbability(@PathVariable String city) {
+        RainProbabilityResponse response = weatherService.getRainProbability(city);
         return ResponseEntity.ok(response);
     }
 }
